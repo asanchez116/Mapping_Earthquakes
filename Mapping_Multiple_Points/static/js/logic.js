@@ -10,13 +10,14 @@ let map = L.map('mapid').setView([40.7, -94.5], 4);
 let cityData = cities;
 
 
-
 // Loop through the cities array and create one marker for each city.
+// Add popup details for each marker
 cityData.forEach(function(city) {
     console.log(city)
-    L.marker(city.location).addTo(map);
+    L.marker(city.location)
+    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population + "</h3>")
+  .addTo(map);
 });
-
 
 
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
