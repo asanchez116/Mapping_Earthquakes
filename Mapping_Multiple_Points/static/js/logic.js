@@ -12,10 +12,20 @@ let cityData = cities;
 
 // Loop through the cities array and create one marker for each city.
 // Add popup details for each marker
+// cityData.forEach(function(city) {
+//     console.log(city)
+//     L.marker(city.location)
+//     .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
+//   .addTo(map);
+// });
+
+// Make a circle marker with radius relative to pop size 
 cityData.forEach(function(city) {
     console.log(city)
-    L.marker(city.location)
-    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population + "</h3>")
+    L.circleMarker(city.location, {
+        radius: city.population/100000
+    })
+    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
   .addTo(map);
 });
 
